@@ -1,0 +1,23 @@
+name: CI with Cache
+
+on: [push, pull_request]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: prime-cache-73303f3  # Exact name required
+      uses: actions/cache@v4
+      with:
+        path: ~/.npm  # Cache npm deps (use ~/.cache/pip for Python)
+        key: cache-73303f3  # Exact key required
+        
+    - name: Install dependencies
+      run: npm ci  # or 'pip install -r requirements.txt'
+      
+    - name: Run tests
+      run: npm test  # Replace with your test command
