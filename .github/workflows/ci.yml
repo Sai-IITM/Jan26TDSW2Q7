@@ -1,22 +1,18 @@
 name: CI with Cache
-
 on: 
   push: [main]
   workflow_dispatch:
-
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout code
       uses: actions/checkout@v4
-      
-    - name: prime-cache-73303f3
+    - name: prime-cache-73303f3    # ← This exact line
       uses: actions/cache@v4
       with:
         path: ~/.npm
         key: cache-73303f3
-        
     - name: Install dependencies
       run: npm ci
 
