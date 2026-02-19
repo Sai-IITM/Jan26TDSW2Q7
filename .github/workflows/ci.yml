@@ -11,7 +11,7 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v4
       
-    - name: prime-cache-73303f3  # ← EXACT NAME REQUIRED
+    - name: prime-cache-73303f3
       uses: actions/cache@v4
       with:
         path: ~/.npm
