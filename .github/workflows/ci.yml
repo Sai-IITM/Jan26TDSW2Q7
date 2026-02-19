@@ -1,19 +1,23 @@
 name: CI with Cache
 
 on: 
-  push: [main]           # Auto-trigger on push to main
-  workflow_dispatch:     # ← ADD THIS LINE for green "Run workflow" button
+  push: [main]
+  workflow_dispatch:
 
 jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-    - name: prime-cache-73303f3
+    - name: Checkout code
+      uses: actions/checkout@v4
+      
+    - name: prime-cache-73303f3  # ← EXACT NAME REQUIRED
       uses: actions/cache@v4
       with:
         path: ~/.npm
         key: cache-73303f3
+        
     - name: Install dependencies
       run: npm ci
+
 
